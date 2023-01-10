@@ -34,6 +34,18 @@ class Program
             Console.WriteLine("The average is: " + average);
             Console.WriteLine("The largest number is: " + max);
             
+
+            long min_num = numberList.Where(x => x >= 0).Min();
+            Console.WriteLine("The smallest positive number is: " + min_num);
+            
+            numberList.Sort();
+            foreach(int num in numberList){
+                
+                Console.WriteLine(num);
+
+            }
+            
+            
             
 
     }
