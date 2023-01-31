@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-
 //This class will generate random quotes.
 
 public class QuotesQuenerator
 {
-
-
     public List<string> _quotesList = new List<string>
 {
     "Let people repent. Let people grow. Believe that people can change and improve. Is that faith?\n" +
@@ -25,36 +22,14 @@ public class QuotesQuenerator
     "If we are striving, if we are working, if we are trying, to the best of our ability,\n"+
     "to improve day by day, then we are in the line of our duty.\n"+
     "- Heber J. Grant"
-
 };
 
     public int _newListIndex;
-
-
     public string Display()
-
     {
-
-
         var random1 = new Random();
         _newListIndex = random1.Next(_quotesList.Count);
         string prompt1 = (_quotesList[_newListIndex]);
-
         return prompt1;
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
 }
