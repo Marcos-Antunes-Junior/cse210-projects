@@ -3,11 +3,15 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {
-       Brand brand = new Brand();
-       string car = brand.GetCar();
-       string brandName = brand.GetBrand();
-       Console.WriteLine(car);
-       Console.WriteLine(brandName);
+    { 
+       List<Employee> employees = new List<Employee>();
+       employees.Add(new SalaryEmployee());
+       employees.Add(new HourlyEmployee());
+
+       foreach (Employee employee in employees)
+       {
+         float pay = employee.CalculatePay();
+         Console.WriteLine(pay);
+       }
     }
 }
