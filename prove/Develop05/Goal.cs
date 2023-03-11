@@ -4,7 +4,7 @@ public class Goal
 {
     private string _fileName;
     private List<string> _goals = new List<string>();
-    public Goal() {}
+    public Goal(){}
 
     public virtual string Display()
     {
@@ -17,7 +17,7 @@ public class Goal
         _goals = goals;
         using (StreamWriter outputFile = new StreamWriter(_fileName))
         {
-            for (int i = 1; i < _goals.Count; i++)
+            for(int i = 1; i < _goals.Count; i++)
             {
                 outputFile.WriteLine($"{i}. {_goals[i]}");
             }
@@ -34,7 +34,7 @@ public class Goal
         {
             string[] parts = line.Split(",");
             string items = parts[0];
-            goals.Add(items);    
+            goals.Add(items);
         }
     }
 }
