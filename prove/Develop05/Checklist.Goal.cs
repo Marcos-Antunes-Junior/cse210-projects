@@ -2,38 +2,76 @@ using System;
 
 public class ChecklistGoal : Goal
 {
-    private string _name;
-    private string _description;
-    private int _points;
-    private bool _completed;
-    private int _timesForBonus;
-    private int _bonusNumber;
-    private int _times = 0;
+   private int _countRequired;
+   private int _bonus;
+   private int _timesCompleted;
 
-    public ChecklistGoal() : base()
+   public ChecklistGoal(string name, string description, int points, int countRequired, int timesCompleted, int bonus) : base (name, description, points)
     {
+        SetName(name);
+        SetDescription(description);
+        SetPoints(points);
+        SetCountRequired(countRequired);
+        SetTimesCompleted(timesCompleted);
+        SetBonus(bonus);
     }
 
-    public override string Display()
+    public override void NewGoal()
     {
-        Console.Write("What is the name of your goal? ");
-        _name = Console.ReadLine();
-        Console.Write("What is a short description of your goal? ");
-        _description = Console.ReadLine();
-        Console.Write("What is the amount of points associated with your goal? ");
-        _points = Convert.ToInt32(Console.ReadLine());
-        Console.Write("How many times does this goal need to be accomplished for a bonus? ");
-        _timesForBonus = Convert.ToInt32(Console.ReadLine());
-        Console.Write("What is the bonus for accomplishing it that many times? ");
-        _bonusNumber = Convert.ToInt32(Console.ReadLine());
+        Console.Write("What is the name of your goal?: ");
+        string name = Console.ReadLine();
+        SetName(name);
+        Console.Write("What is a short description of it?: ");
+        string description = Console.ReadLine();
+        SetDescription(description);
+        Console.Write("What is the ammount of points associated with this goal?: ");
+        int points = int.Parse(Console.ReadLine());
+        SetPoints(points);
+        Console.Write("How many times does this goal need to be accomplished for a bonus?: ");
+        int timesCompleted = int.Parse(Console.ReadLine());
+        SetTimesCompleted(timesCompleted);
+        Console.Write("What is the bonus for accomplishing it that many times?: ");
+        int bonus = int.Parse(Console.ReadLine());
+        SetBonus(bonus);
+    }
 
-        if(_completed == false)
+    public void SetTimesCompleted(int timesCompleted)
+    {
+        _timesCompleted = timesCompleted;
+    }
+
+    public override int GetTimesCompleted()
+    {
+        return _timesCompleted;
+    }
+
+    public void SetCountRequired(int countRequired)
+    {
+        _countRequired = countRequired;
+    }
+
+    public override int GetCountRequired()
+    {
+        return _countRequired;
+    }
+
+    public override void SetBonus(int bonus)
+    {
+        _bonus= bonus;
+    }
+
+    public override int GetBonus()
+    {
+        return _bonus;
+    }
+
+    public override void Completed()
+    {
+        _countRequired ++;
+        Console.WriteLine($"Congratulations! You have earned {GetPoints()} points.");
+        if (_countRequired == _timesCompleted)
         {
-            return $"[] {_name} ({_description}) -- Currently completed: {_times}/{_timesForBonus}";
-        }
-        else
-        {
-            return $"[X] {_name} ({_description}) -- Currently completed: {_times}/{_timesForBonus}";
+            Console.WriteLine($"Congratulations! You have earned {GetBonus()} bonus points.");   
         }
     }
 }

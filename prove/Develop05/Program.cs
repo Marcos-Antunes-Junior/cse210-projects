@@ -7,17 +7,12 @@ class Program
         Console.Clear();
         Console.WriteLine("Welcome to the Eternal Quest Program");
         string userInput;
-        string something = "";
         string fileName;
-        int points = 0;
-        List<string> goalsList = new List<string>();
-        goalsList.Add(something);
-
+        List<Goal> goals = new List<Goal>();
+        DisplayGoals display = new DisplayGoals();
         do
-        {   
-            Goal goal = new Goal();
-            Console.WriteLine("");
-            Console.WriteLine($"You have {points} points");
+        {
+            Console.WriteLine($"You have: {display.DisplayTotalPoints()} points.");
             Console.WriteLine("");
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
@@ -38,20 +33,26 @@ class Program
                 string typeGoal = Console.ReadLine();
                 if (typeGoal == "1")
                 {
-                    SimpleGoal simple = new SimpleGoal();
-                    goalsList.Add(simple.Display());
+                    Console.WriteLine("");
+                    SimpleGoal simple = new SimpleGoal("", "", 0, false);
+                    simple.NewGoal();
+                    goals.Add(simple);
                     Console.Clear();
                 }
                 else if (typeGoal == "2")
-                {
-                    EternalGoal eternal = new EternalGoal();
-                    goalsList.Add(eternal.Display());
+                {   
+                    Console.WriteLine("");
+                    EternalGoal eternal = new EternalGoal("", "", 0);
+                    eternal.NewGoal();
+                    goals.Add(eternal);
                     Console.Clear();
                 }
                 else if (typeGoal == "3")
                 {
-                    ChecklistGoal checklist = new ChecklistGoal();
-                    goalsList.Add(checklist.Display());
+                    Console.WriteLine("");
+                    ChecklistGoal checklist = new ChecklistGoal("", "", 0, 0, 0, 0);
+                    checklist.NewGoal();
+                    goals.Add(checklist);
                     Console.Clear();
                 }
                 else
@@ -62,18 +63,16 @@ class Program
             }
             else if (userInput == "2")
             {
-                for (int i = 1; i < goalsList.Count; i++)
-                {
-                    Console.WriteLine($"{i}. {goalsList[i]}");
-                }
+               display.ListGoals(goals); 
             }
             else if (userInput == "3")
             {
                 Console.Write("What is the name of the file? ");
                 fileName = Console.ReadLine();
                 if (fileName == "goals.txt")
-                { 
-                    goal.WriteTextFile(goalsList, fileName);
+                {
+                    display.SaveGoals(goals, fileName);
+                    Console.Clear();
                 }
                 else
                 {
@@ -87,8 +86,9 @@ class Program
                 Console.Write("What is the name of the file? ");
                 fileName = Console.ReadLine();
                 if (fileName == "goals.txt")
-                {
-                    goal.ReadTextFile(goalsList, fileName);
+                {   
+                    display.LoadGoals(goals, fileName);
+                    Console.Clear();
                 }
                 else
                 {
@@ -99,6 +99,8 @@ class Program
             }
             else if (userInput == "5")
             {
+                display.RecordEvent(goals);
+                Console.WriteLine($"You now have {display.DisplayTotalPoints()} points.");
             }
         } while (userInput != "6");
     }

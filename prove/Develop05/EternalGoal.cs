@@ -2,22 +2,29 @@ using System;
 
 public class EternalGoal : Goal
 {
-    private string _name;
-    private string _description;
-    private int _points;
-
-    public EternalGoal() : base()
+    public EternalGoal(string name, string description, int points) : base (name, description, points)
     {
+        SetName(name);
+        SetDescription(description);
+        SetPoints(points);
     }
 
-    public override string Display()
+    public override void NewGoal()
     {
-        Console.Write("What is the name of your goal? ");
-        _name = Console.ReadLine();
-        Console.Write("What is a short description of your goal? ");
-        _description = Console.ReadLine();
-        Console.Write("What is the amount of points associated with your goal? ");
-        _points = Convert.ToInt32(Console.ReadLine());
-        return $"[] {_name} ({_description})";
+        Console.Write("Which is the name of your goal?: ");
+        string name = Console.ReadLine();
+        SetName(name);
+        Console.Write("What is a short description of it?: ");
+        string description = Console.ReadLine();
+        SetDescription(description);
+        Console.Write("What is the ammount of points associated with this goal?: ");
+        int points = int.Parse(Console.ReadLine());
+        SetPoints(points);
+    }
+
+    public override void Completed()
+    {
+        Console.WriteLine($"Congratulations! You have earned {GetPoints()} points.");
+        SetCompleted(true);
     }
 }

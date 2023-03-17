@@ -1,40 +1,82 @@
 using System;
 
 public class Goal
-{
-    private string _fileName;
-    private List<string> _goals = new List<string>();
-    public Goal(){}
+{   
+    private string _name;
+    private string _description;
+    private int _points;
+    private bool _completed;
+    private int _bonus;
 
-    public virtual string Display()
+      public Goal(string name, string description, int points)
     {
-        return "";
+        _name = name;
+        _description = description;
+        _points = points;
+    }
+    
+    public virtual void NewGoal(){}
+   
+    public virtual void Completed(){}
+    
+    public virtual int GetTimesCompleted()
+    {
+        return 0;
     }
 
-    public void WriteTextFile(List<string> goals, string fileName)
+    public virtual int GetCountRequired()
     {
-        _fileName = fileName;
-        _goals = goals;
-        using (StreamWriter outputFile = new StreamWriter(_fileName))
-        {
-            for(int i = 1; i < _goals.Count; i++)
-            {
-                outputFile.WriteLine($"{i}. {_goals[i]}");
-            }
-        }
+        return 0;
+    }
+    
+    public virtual int GetBonus()
+    {
+        return 0;
+    }
+    
+    public virtual void SetBonus(int bonus)
+    {
+        _bonus = bonus;
+    }
+   
+    public string GetName()
+    {
+        return _name;
     }
 
-    public void ReadTextFile(List<string> goals, string fileName)
+    public void SetName(string name)
     {
-        _fileName = fileName;
-        _goals = goals;
-        string[] lines = System.IO.File.ReadAllLines(fileName);
+        _name = name;
+    }
 
-        foreach (string line in lines)
-        {
-            string[] parts = line.Split(",");
-            string items = parts[0];
-            goals.Add(items);
-        }
+    public string GetDescription()
+    {
+        return _description;
+    }
+
+    public void SetDescription(string description)
+    {
+        _description = description;
+    }
+
+    public int GetPoints()
+    {
+        return _points;
+    }
+
+    public void SetCompleted(bool completed)
+    {
+        _completed = completed;
+    }
+
+    public bool GetCompleted()
+    {
+        return _completed;
+    }
+
+    public void SetPoints(int points)
+    {
+        _points = points;
     }
 }
+

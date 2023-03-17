@@ -3,15 +3,17 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    { 
-       List<Employee> employees = new List<Employee>();
-       employees.Add(new SalaryEmployee());
-       employees.Add(new HourlyEmployee());
+    {    
+        
+       List<CarKMCity> car = new List<CarKMCity>();
+       car.Add(new CarKMCity());
+       car.Add(new CarKMRoad());
 
-       foreach (Employee employee in employees)
+       foreach (CarKMCity cars in car)
        {
-         float pay = employee.CalculatePay();
-         Console.WriteLine(pay);
+         float totalKM = cars.KmPerLiter();
+         Console.WriteLine(totalKM);
        }
+    
     }
 }

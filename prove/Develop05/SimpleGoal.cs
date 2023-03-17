@@ -1,33 +1,33 @@
 using System;
 
-public class SimpleGoal : Goal{
-    private string _name;
-    private string _description;
-    private int _points;
-    private bool _completed;
-
-public SimpleGoal() : base(){
-
-}
-
-
-    public override string Display()
+public class SimpleGoal : Goal 
+{
+  
+  public SimpleGoal(string name, string description, int points, bool completed) : base(name, description, points)
     {
-        Console.Write("What is the name of your goal? ");
-        _name = Console.ReadLine();
-        Console.Write("What is a short description of your goal? ");
-        _description = Console.ReadLine();
-        Console.Write("What is the amount of points associated with your goal? ");
-        _points = Convert.ToInt32(Console.ReadLine());
-        
-        if(_completed == false)
-        {
-        return $"[] {_name} ({_description})";
-        }else{
-        return $"[X] {_name} ({_description})";
-        }
-
+        SetName(name);
+        SetDescription(description);
+        SetPoints(points);
+        SetCompleted(completed);
     }
 
+    public override void NewGoal()
+    {
+        Console.Write("What is the name of your goal?: ");
+        string name = Console.ReadLine();
+        SetName(name);
+        Console.Write("What is a short description of it?: ");
+        string description = Console.ReadLine();
+        SetDescription(description);
+        Console.Write("What is the ammount of points associated with this goal?: ");
+        int points = int.Parse(Console.ReadLine());
+        SetPoints(points);
+        SetCompleted(false);
+    }
 
+    public override void Completed()
+    {
+        Console.WriteLine($"Congratulations! You have earned {GetPoints()} points.");
+        SetCompleted(true);
+    }
 }
