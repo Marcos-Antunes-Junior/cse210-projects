@@ -4,16 +4,16 @@ class Program
 {
     static void Main(string[] args)
     {    
-        
-       List<CarKMCity> car = new List<CarKMCity>();
-       car.Add(new CarKMCity());
-       car.Add(new CarKMRoad());
-
-       foreach (CarKMCity cars in car)
-       {
-         float totalKM = cars.KmPerLiter();
-         Console.WriteLine(totalKM);
-       }
+        int restTime = 0;
+   for(int i = 30; i > restTime; i--)
+        {   
+            Console.Write("\b \b");
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            
+            
+        }
     
     }
 }
