@@ -36,21 +36,18 @@ class Program
         }
         else if(userInput == "4")
         {
-          Console.WriteLine("");
-          Console.WriteLine("In progress...Please, come back later.");
-          Thread.Sleep(2000);
-          Console.Clear();
+          menu.ProgressMenu();
         }
         else if(userInput == "5")
         {
-            break;
+          break;
         }
         else
         {
-            Console.WriteLine("");
-            Console.WriteLine("Wrong option! Please, try again.");
-            Thread.Sleep(2500);
-            Console.Clear();
+          Console.WriteLine("");
+          Console.WriteLine("Wrong option! Please, try again.");
+          Thread.Sleep(2500);
+          Console.Clear();
         }
       }
       while(userInput != "5");     

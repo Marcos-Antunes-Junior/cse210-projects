@@ -17,7 +17,7 @@ public class Menu
             Console.WriteLine("4. Lower Body Strength");
             Console.WriteLine("5. Upper Body Definition");
             Console.WriteLine("6. Upper Body Strength");
-            Console.WriteLine("7. Back to the main menu.");
+            Console.WriteLine("7. Back to the main menu");
             Console.Write("Please, select an option: ");
             userInput = Console.ReadLine();
             if (userInput == "1")
@@ -192,7 +192,7 @@ public class Menu
                 Thread.Sleep(2500);
                 Console.Clear();
             }
-        } while (userInput != "7");
+        }while(userInput != "7");
     }
 
     public void WorkoutChoice()
@@ -233,5 +233,62 @@ public class Menu
             Aerobic aerobic = new Aerobic("", "");
             aerobic.LevelChoice();
         }   
+    }
+
+    public void ProgressMenu()
+    {
+        Console.Clear();
+        string userInput;
+        do
+        {   
+            Console.WriteLine("Here you can calculate your body mass index(BMI) and register your current weight.");
+            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("1. Register progress");
+            Console.WriteLine("2. Load Progress");
+            Console.WriteLine("3. Back to the main menu");
+            Console.Write("Please, select an option: ");
+            userInput = Console.ReadLine();
+            if(userInput == "1")
+            {
+                Console.WriteLine("What is your name? ");
+                string name = Console.ReadLine();
+                Console.WriteLine("What is your weight in kg?");
+                float weightInKg = float.Parse(Console.ReadLine());
+                Console.WriteLine("What is your height in m?");
+                float heightInM = float.Parse(Console.ReadLine());
+                Progress progress = new Progress(name, "", weightInKg, heightInM);
+                float bmiCalculator = progress.BMICalculator(weightInKg, heightInM);
+                progress.BMICategories(bmiCalculator);
+                progress.SaveInfoFile();
+                Console.WriteLine("Informations registered!");
+                Console.WriteLine("");
+            }
+            else if(userInput == "2")
+            {
+              Progress progress = new Progress("", "", 0, 0);
+              if(new FileInfo("progress.txt").Length == 0)
+              {
+                Console.WriteLine("");
+                Console.WriteLine("Empty file! Please register your progress before loading.");
+                Thread.Sleep(3500);
+                Console.Clear();
+              }
+              else
+              {
+                progress.ReadFile();
+              }             
+            }
+            else if(userInput == "3")
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Wrong option! Please, try again.");
+                Thread.Sleep(2500);
+                Console.Clear();
+            }
+        }while(userInput != "3");
     }
 }

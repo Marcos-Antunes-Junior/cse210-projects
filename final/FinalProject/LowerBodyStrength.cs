@@ -2,11 +2,9 @@ using System;
 
 public class LowerBodyStrength : Exercises
 {
-
     private string _name;
     private string _description;
     private List<string> _lowerStrength = new List<string>();
-
 
     public LowerBodyStrength(string name, string description) : base(name, description)
     {

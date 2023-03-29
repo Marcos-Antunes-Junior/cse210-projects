@@ -2,7 +2,6 @@ using System;
 
 public class LowerBodyDef : Exercises
 {
-
     private string _name;
     private string _description;
     private List<string> _lowerDef = new List<string>();
